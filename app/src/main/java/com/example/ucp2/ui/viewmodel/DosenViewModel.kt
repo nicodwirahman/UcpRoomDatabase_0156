@@ -4,6 +4,16 @@ import com.example.ucp2.data.entity.Dosen
 
 
 
+
+data class FormErrorState(
+    val nidn: String? =null,
+    val nama: String? =null,
+    val JenisKelamin: String? =null,
+){
+    fun isValid(): Boolean{
+        return nidn == null && nama == null && JenisKelamin == null
+    }
+}
 data class DosenEvent(
     val nidn: String = "",
     val nama: String = "",
