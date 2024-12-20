@@ -5,11 +5,15 @@ import com.example.ucp2.data.entity.Dosen
 
 
 data class DosenEvent(
-    val ndin: String = "",
+    val nidn: String = "",
     val nama: String = "",
     val JenisKelamin: String = ""
 
 )
 fun DosenEvent.toDosenEntity(): Dosen = Dosen(
-    ndin = ndin
+    nidn = nidn,
+    nama = nama,
+    JenisKelamin = JenisKelamin
+
+
 )
