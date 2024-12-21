@@ -14,5 +14,11 @@ class LocalRepositoryDosen(private val dosenDao: DosenDao) : RepositoryDosen {
     // Implementasi Operasi Read
     override fun getAllDosen(): Flow<List<Dosen>> {
         return dosenDao.getAllDosen()
+
+
+    }
+
+    override fun getDosen(nidn: String): Flow<Dosen>{
+        return dosenDao.getDosen(nidn)
     }
 }
