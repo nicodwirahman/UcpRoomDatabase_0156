@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DateRange
 import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -28,21 +29,22 @@ fun CardDosen(
 ) {
 
     Card(
-        onClick =  onClick,
+        onClick = onClick,
         modifier = modifier
             .fillMaxWidth()
             .padding(8.dp)
 
     ) {
-        Column (
+        Column(
             modifier = modifier.padding(8.dp)
-        ){
-            Row (
+        ) {
+            Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
-            ){
+            ) {
                 Icon(
-                    imageVector = Icons.Filled.Person, contentDescription = "" )
+                    imageVector = Icons.Filled.Person, contentDescription = ""
+                )
                 Spacer(modifier = Modifier.padding(4.dp))
                 Text(
                     text = dosen.nama,
@@ -52,13 +54,21 @@ fun CardDosen(
 
             }
 
-            Row (
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Icon(imageVector = Icons.Filled.DateRange, contentDescription = "")
+                Spacer(modifier = Modifier.padding(4.dp))
+                Text(
+                    text = dosen.nidn,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 16.sp
+                )
 
-            ){
+                }
 
             }
-
         }
-    }
 
-}
+    }
