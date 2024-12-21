@@ -10,4 +10,6 @@ interface RepositoryDosen {
 
     // Operasi Read: Semua Data
     fun getAllDosen(): Flow<List<Dosen>>
+
+    fun getDosen(nidn: String): Flow<Dosen>
 }
