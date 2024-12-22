@@ -4,7 +4,7 @@ import com.example.ucp2.data.entity.MataKuliah
 
 
 data class MataKuliahEvent(
-    val code: String ="",
+    val Kode: String ="",
     val Nama: String="",
     val SKS: String="",
     val Semester: String="",
@@ -12,4 +12,12 @@ data class MataKuliahEvent(
     val DosenPengampu: String=""
 
 )
+fun MataKuliahEvent.toMataKuliahEntity(): MataKuliah = MataKuliah(
+    kode = Kode,
+    Nama = Nama,
+    Sks = SKS,
+    Semester = Semester,
+    Jenis = Jenis,
+    DosenPengampu =DosenPengampu
 
+)
