@@ -30,6 +30,12 @@ class UpdateMhsViewModel (
                 .toUiStateMk()
         }
     }
+    fun updateState(mataKuliahEvent: MataKuliahEvent){
+        updateUiState = updateUiState.copy(
+            mataKuliahEvent = mataKuliahEvent
+        )
+    }
+
     private fun validateFields(): Boolean {
         val event = updateUiState.mataKuliahEvent
         val errorState = FormErrorState(
@@ -44,11 +50,7 @@ class UpdateMhsViewModel (
         updateUiState = updateUiState.copy(isEntryValid = errorState)
         return errorState.isValid()
     }
-    fun updateState(mataKuliahEvent: MataKuliahEvent){
-        updateUiState = updateUiState.copy(
-            mataKuliahEvent = mataKuliahEvent
-        )
-    }
+
 }
 
 fun MataKuliah.toUiStateMk(): MkUIState = MkUIState(
