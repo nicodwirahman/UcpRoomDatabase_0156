@@ -1,5 +1,6 @@
 package com.example.ucp2.ui.view.dosen
 
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,19 +29,23 @@ fun DetailDosenView(
     viewModel: ViewModel = viewModel(),
     onBack: () -> Unit = {},
 ){
-    Scaffold (
+    Scaffold(
         topBar = {
             CustomTopAppBar(
                 judul = "Detail Dosen",
                 showBackButton = true,
                 onBack = onBack,
                 modifier = modifier
-    )
+            )
         },
-
-
-
+        content = { paddingValues ->
+            Box(modifier = Modifier.padding(paddingValues)) {
+                Text("Detail Dosen")
+            }
+        }
+    )
 }
+
 @Composable
 fun ItemDetailDosen(
     modifier: Modifier = Modifier,
@@ -57,20 +62,15 @@ fun ItemDetailDosen(
         Column(
             modifier = Modifier
         ){
-            componentDetailDosen(judul = "ndin", isinya = dosen.nidn)
+            componentDetailDosen(judul = "NIDN", isinya = dosen.nidn)
             Spacer(modifier = Modifier.padding(4.dp))
 
             componentDetailDosen(judul = "Nama", isinya = dosen.nama)
             Spacer(modifier = Modifier.padding(4.dp))
-            componentDetailDosen(judul = "jenis Kelamin", isinya = dosen.JenisKelamin)
+            componentDetailDosen(judul = "Jenis Kelamin", isinya = dosen.JenisKelamin)
             Spacer(modifier = Modifier.padding(4.dp))
         }
-
     }
-
-
-
-
 }
 
 @Composable
@@ -81,20 +81,19 @@ fun componentDetailDosen(
 ){
     Column (
         modifier = modifier.fillMaxWidth(),
-
         horizontalAlignment = Alignment.Start
     ){
         Text(
             text = "$judul : ",
-            fontSize =20.sp,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = Color.Gray
         )
 
         Text(
-            text = isinya, fontSize = 20.sp,
+            text = isinya,
+            fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
-
     }
 }
