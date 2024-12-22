@@ -27,8 +27,27 @@ class UpdateMhsViewModel (
             updateUiState = repositoryMK.getMataKuliah(_kode)
                 .filterNotNull()
                 .first()
-                .toUiStateMk
+                .toUiStateMk()
         }
+    }
+    private fun validateFields(): Boolean {
+        val event = updateUiState.mataKuliahEvent
+        val errorState = FormErrorState(
+            Kode = if (event.Kode.isNotEmpty()) null else "Kode tidak boleh kosong",
+            Nama = if (event.Nama.isNotEmpty()) null else "NAMA tidak boleh kosong",
+            SKS = if (event.SKS.isNotEmpty()) null else "SKS tidak boleh kosong",
+            Semester = if (event.Semester.isNotEmpty()) null else "Semester tidak boleh kosong",
+            Jenis = if (event.Jenis.isNotEmpty()) null else "Jenis tidak boleh kosong",
+            DosenPengampu = if (event.DosenPengampu.isNotEmpty()) null else "Dosen Pengampu tidak boleh kosong"
+
+        )
+        updateUiState = updateUiState.copy(isEntryValid = errorState)
+        return errorState.isValid()
+    }
+    fun updateState(mataKuliahEvent: MataKuliahEvent){
+        updateUiState = updateUiState.copy(
+            mataKuliahEvent = mataKuliahEvent
+        )
     }
 }
 
