@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.ui.Costumwidget.CustomTopAppBar
+import com.example.ucp2.ui.navigation.AlamatNavigasi
 import com.example.ucp2.ui.viewmodel.DosenEvent
 import com.example.ucp2.ui.viewmodel.DosenUiState
 import com.example.ucp2.ui.viewmodel.DosenViewModel
@@ -37,6 +38,9 @@ import com.example.ucp2.ui.viewmodel.PenyediaViewModel
 import kotlinx.coroutines.launch
 import org.w3c.dom.Text
 
+object  DestinasiInsert: AlamatNavigasi{
+    override val route: String ="insert_dosen"
+}
 
 @Composable
 fun InsertDosenView(
