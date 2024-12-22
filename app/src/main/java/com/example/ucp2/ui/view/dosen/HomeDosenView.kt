@@ -11,6 +11,7 @@ import androidx.compose.material.icons.filled.Person
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -19,6 +20,25 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ucp2.data.entity.Dosen
+import com.example.ucp2.ui.viewmodel.HomeDosenModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.ui.viewmodel.HomeUiState
+
+@Composable
+fun HomeDosenView(
+    viewModel: HomeDosenView = viewModel(),
+    onAddDosen: () -> Unit = {},
+    onDetailClick: (String)-> Unit = {},
+    modifier: Modifier = Modifier
+){
+
+
+}
+
+@Composable
+fun BodyHomeDosenView(
+    homeUiState: HomeDosenView.HomeUi
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
