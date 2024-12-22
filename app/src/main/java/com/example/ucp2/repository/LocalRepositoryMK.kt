@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 class LocalRepositoryMK(private val mkDao: MKDao): RepositoryMK {
 
     override suspend fun insertMK(mataKuliah: MataKuliah) {
-        mkDao.InsertMK(mataKuliah)
+        mkDao.insertMK(mataKuliah)
     }
 
     override fun getAllMataKuliah(): Flow<List<MataKuliah>> {
