@@ -9,6 +9,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
@@ -30,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ucp2.ui.ViewModelMk.DetailMkViewModel
 import  androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.ucp2.data.entity.MataKuliah
 import com.example.ucp2.ui.Costumwidget.CustomTopAppBar
 import com.example.ucp2.ui.ViewModelMk.DetailUiState
 
@@ -66,6 +69,39 @@ fun DetailMKView(
                 )
             }
         }
+}
+@Composable
+fun itemDetailMk(
+    modifier: Modifier = Modifier,
+    mataKuliah: MataKuliah
+){
+    Card(
+        modifier = modifier
+            .fillMaxWidth(),
+        colors = CardDefaults.cardColors(
+            containerColor = MaterialTheme.colorScheme.primaryContainer,
+            contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+        )
+    ) {
+        Column (
+            modifier = Modifier.padding(16.dp)
+        ){
+            ComponentDetailMk(judul = "Kode", isinya = mataKuliah.kode)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMk(judul = "Nama", isinya = mataKuliah.Nama)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMk(judul = "Sks", isinya = mataKuliah.Sks)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMk(judul = "Semester", isinya = mataKuliah.Semester)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMk(judul = "Jenis", isinya = mataKuliah.Jenis)
+            Spacer(modifier = Modifier.padding(4.dp))
+            ComponentDetailMk(judul = "Dosen Pengampu", isinya = mataKuliah.DosenPengampu)
+            Spacer(modifier = Modifier.padding(4.dp))
+
+        }
+
+    }
 }
 
 @Composable
