@@ -24,7 +24,10 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.ucp2.ui.ViewModelMk.DetailMkViewModel
 import  androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.ui.Costumwidget.CustomTopAppBar
@@ -63,6 +66,32 @@ fun DetailMKView(
                 )
             }
         }
+}
+
+@Composable
+fun ComponentDetailMk(
+    modifier: Modifier = Modifier,
+    judul: String,
+    isinya: String,
+){
+    Column(
+        modifier = modifier.fillMaxWidth(),
+
+        horizontalAlignment = Alignment.Start
+    ) {
+        Text(
+            text = "$judul : ",
+            fontSize = 20.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color.Gray
+        )
+
+        Text(
+            text = isinya, fontSize = 20.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+    }
 }
 
 @Composable
