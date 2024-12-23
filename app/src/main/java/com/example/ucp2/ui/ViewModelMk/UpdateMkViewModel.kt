@@ -7,6 +7,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.ucp2.data.entity.MataKuliah
+import com.example.ucp2.repository.RepositoryDosen
 import com.example.ucp2.repository.RepositoryMK
 import com.example.ucp2.ui.navigation.DestinasiUpdate
 import kotlinx.coroutines.flow.filterNotNull
@@ -15,13 +16,21 @@ import kotlinx.coroutines.launch
 
 class UpdateMhsViewModel (
     savedStateHandle: SavedStateHandle,
-    private val repositoryMK: RepositoryMK
+    private val repositoryMK: RepositoryMK,
+    private val repositoryDosen: RepositoryDosen
 ):ViewModel(){
     var updateUiState by mutableStateOf(MkUIState())
         private set
 
     private val _kode: String = checkNotNull(savedStateHandle[DestinasiUpdate.Kode])
-
+    var dosenList by mutableStateOf(listOf<String>())
+    fun getDosenList() {
+        viewModelScope.launch {
+            repositoryDosen.getAllDosen().collect { dosenEntities ->
+                dosenList = dosenEntities.map { it.nama }
+            }
+        }
+    }
     init {
         viewModelScope.launch {
             updateUiState = repositoryMK.getMataKuliah(_kode)
@@ -36,7 +45,7 @@ class UpdateMhsViewModel (
         )
     }
 
-    private fun validateFields(): Boolean {
+    fun validateFields(): Boolean {
         val event = updateUiState.mataKuliahEvent
         val errorState = FormErrorState(
             Kode = if (event.Kode.isNotEmpty()) null else "Kode tidak boleh kosong",
