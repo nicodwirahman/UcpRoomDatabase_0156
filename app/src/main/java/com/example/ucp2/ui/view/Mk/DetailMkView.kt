@@ -35,6 +35,7 @@ import  androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.ucp2.data.entity.MataKuliah
 import com.example.ucp2.ui.Costumwidget.CustomTopAppBar
 import com.example.ucp2.ui.ViewModelMk.DetailUiState
+import com.example.ucp2.ui.ViewModelMk.toMataKuliahEntity
 
 @Composable
 fun DetailMKView(
@@ -69,7 +70,82 @@ fun DetailMKView(
                 )
             }
         }
+    ){innerPadding ->
+        val detailUiState by viewModel.detailUiState.collectAsState()
+        BodyDetailMk(
+            modifier = Modifier.padding(innerPadding),
+            detailUiState = detailUiState,
+            onDeleteClick = {
+                viewModel.deletMk()
+                onDeleteClick()
+            }
+        )
+
+    }
 }
+@Composable
+fun BodyDetailMk(
+    modifier: Modifier = Modifier,
+    detailUiState: DetailUiState = DetailUiState(),
+    onDeleteClick: () -> Unit ={}
+){
+    var deleteConfirmationRequired by rememberSaveable { mutableStateOf(false) }
+    when{
+        detailUiState.isLoading ->{
+            Box(
+                modifier = modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                CircularProgressIndicator()
+            }
+        }
+
+        detailUiState.isUiEventNotEmpty ->{
+            Column(
+                modifier = modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            ) {
+                itemDetailMk(
+                    mataKuliah = detailUiState.detailUiEvent.toMataKuliahEntity(),
+                    modifier = Modifier
+                )
+                Spacer(modifier = Modifier.padding(8.dp))
+                Button(
+                    onClick = {
+                        deleteConfirmationRequired = true
+                    },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "Delete")
+                }
+                if (deleteConfirmationRequired){
+                    DeleteConfirmationDialog(
+                        onDeleteConfirm = {
+                            deleteConfirmationRequired = false
+                            onDeleteClick()
+                        },
+                        onDeleteCancel = {deleteConfirmationRequired = false},
+                        modifier = Modifier.padding(8.dp)
+                    )
+                }
+            }
+        }
+
+        detailUiState.isUiEventNotEmpty ->{
+            Box(
+                modifier = modifier.fillMaxWidth(),
+                contentAlignment = Alignment.Center
+            ){
+                Text(
+                    text = "Data tidak ditemukan",
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
+        }
+    }
+}
+
 @Composable
 fun itemDetailMk(
     modifier: Modifier = Modifier,
