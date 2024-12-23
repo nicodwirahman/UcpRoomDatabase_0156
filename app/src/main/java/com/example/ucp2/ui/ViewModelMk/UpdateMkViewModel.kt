@@ -14,7 +14,7 @@ import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
-class UpdateMhsViewModel (
+class UpdateMkViewModel (
     savedStateHandle: SavedStateHandle,
     private val repositoryMK: RepositoryMK,
     private val repositoryDosen: RepositoryDosen
