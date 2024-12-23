@@ -45,6 +45,7 @@ import com.example.ucp2.ui.Costumwidget.CustomTopAppBar
 fun HomeMkView(
     viewModel: HomeMkViewModel = viewModel(),
     onAddMatkul: () -> Unit = { },
+    onBack : () -> Unit ={},
     onDetailClick: (String) -> Unit = { },
     modifier: Modifier = Modifier
 ){
